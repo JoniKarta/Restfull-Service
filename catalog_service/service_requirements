@@ -1,0 +1,30 @@
+Design and implement a Product Catalog microservice using FastAPI that supports CRUD operations
+with the following requirements:
+
+1. Core Requirements:
+   - Implement CRUD endpoints for managing products
+   - Include proper validation and error handling
+   - Implement dependency injection
+   - Use async database operations
+   - Include proper response models
+   - Add authentication middleware
+   - Implement pagination and filtering
+
+2. Data Model for Product:
+   - id: UUID
+   - name: str
+   - description: str
+   - price: float
+   - category: str
+   - created_at: datetime
+   - updated_at: datetime
+   - is_active: bool
+
+3. Additional Requirements:
+   - Implement proper logging
+   - Add rate limiting
+   - Include unit tests
+   - Document API using OpenAPI/Swagger
+   - Implement caching mechanism
+
+Time limit: 90 minutes
