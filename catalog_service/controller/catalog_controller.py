@@ -7,6 +7,7 @@ from starlette.status import (HTTP_200_OK,
                               HTTP_201_CREATED, HTTP_400_BAD_REQUEST, HTTP_500_INTERNAL_SERVER_ERROR)
 
 from boundary.catalog_boundary import CatalogBoundary
+from boundary.pagination import Pagination
 from dal.dao import get_db
 from logic.catalog_service import CatalogService
 import logging
@@ -23,9 +24,9 @@ def get_catalog_service(dao: Annotated[Session, Depends(get_db)]):
 
 
 @router.get('/catalogs', status_code=HTTP_200_OK)
-async def get_catalogs(catalog_service: Annotated[CatalogService, Depends(get_catalog_service)]):
+async def get_catalogs(pagination: Annotated[Pagination, Depends()], catalog_service: Annotated[CatalogService, Depends(get_catalog_service)]):
     try:
-        return await catalog_service.get_catalogs()
+        return await catalog_service.get_catalogs(pagination)
     except Exception as err:
         logger.error(err)
         raise HTTPException(status_code=HTTP_500_INTERNAL_SERVER_ERROR, detail="Could not get catalogs")
